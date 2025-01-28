@@ -38,4 +38,7 @@ class Ship:
             self.x -= self.settings.ship_speed
         # Update rect object
         self.rect.x = self.x
+    
+    def center_ship(self):
+        pass
         
