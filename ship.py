@@ -1,18 +1,20 @@
 import pygame
+from pygame.sprite import Sprite
 
-class Ship:
+class Ship(Sprite):
     '''A class to manage the ship'''
 
     def __init__(self, ai_game):
         '''Initalize the ship and set the starting position'''
+        super().__init__()
         self.screen = ai_game.screen
         self.screen_rect = ai_game.screen.get_rect()
         self.settings = ai_game.settings
 
         # Load the ship
         original_image = pygame.image.load("assets/images/nasa_ship.png").convert_alpha()
-        self.sprite_image = pygame.transform.scale(original_image, (100, 100))
-        self.rect = self.sprite_image.get_rect()
+        self.image = pygame.transform.scale(original_image, (100, 100))
+        self.rect = self.image.get_rect()
         
 
         # Start new ship at botom of screen
@@ -27,7 +29,7 @@ class Ship:
 
     def blitme(self):
         '''Draw Ship and current location'''
-        self.screen.blit(self.sprite_image,self.rect)
+        self.screen.blit(self.image,self.rect)
         pygame.draw.rect(self.screen, (255, 0, 0), self.rect, 2)
 
     def update(self):
